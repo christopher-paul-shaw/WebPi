@@ -1,0 +1,5 @@
+{
+    "require": {
+        "phpgt/webengine": "^2.2"
+    }
+}

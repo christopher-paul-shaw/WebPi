@@ -1,0 +1,117 @@
+
+.c-nav {
+  // Set Colours
+  background: #2c3e50;
+  * {
+    color: #fff;
+  }
+
+  opacity: 0.9;
+  z-index: 99;
+  margin-bottom: 10px;
+
+  a {
+    text-decoration: none;
+    color: #fff;
+    width: 100%;
+    display: block;
+  }
+
+  .c-nav__menu label:hover {
+    background: #333;
+  }
+
+  // Always Hide
+  .c-nav__toggle--checkbox {
+    display: none;
+  }
+
+  .c-nav__container {
+    width: 100%;
+  }
+
+  .c-nav__logo,
+  .c-nav__menu,
+  .c-nav__toggle {
+    display: inline-block;
+    min-height: 50px;
+    line-height: 50px;
+  }
+
+  .c-nav__menu label {
+    line-height: 50px;
+  }
+
+  // Sub Menus, Not Currently Used
+  .c-nav__menu label {
+    display: inline-block;
+    padding: 0px 4px;
+  }
+  .c-nav__menu .sub {
+    display: none;
+    position: absolute;
+    background: #333;
+    margin-left: -4px;
+    margin-top: 4px;
+  }
+  .c-nav__menu label:hover > .sub {
+    display: block;
+  }
+  .c-nav__menu .sub label {
+    display: block;
+  }
+  .c-nav__menu .sub label:not(:first-child) {
+    border-top: 1px solid rgba(190, 192, 192, 0.1);
+  }
+
+  // Mobile Only Logic
+  @media screen and (max-width: 750px) { 
+    .c-nav__menu {
+      display: none;
+      position: relative;
+    }
+    .c-nav__logo,
+    .c-nav__toggle {
+      padding: 0px 20px;
+      width: 40%;
+    }
+    .c-nav__toggle {
+      text-align: right;
+      float: right;
+    }
+    .c-nav__toggle--checkbox:checked ~ .c-nav__menu {
+      display: block;
+    }
+    .c-nav__menu,
+    .menu_check {
+      display: none;
+    }
+    .c-nav__menu label {
+      text-align: left;
+      padding-left: 10px;
+      position: relative;
+      border-top: 1px solid rgba(190, 192, 192, 0.1);
+      height: auto;
+      display: block;
+    }
+    
+  }
+
+  // Desktop
+  @media screen and (min-width: 750px) {
+    width: 100%;
+    top: 0px; 
+    .c-nav__toggle {
+      display: none;
+    }
+    .c-nav__menu {
+      position: relative;
+      text-align: right;
+      float: right;
+    }
+    .c-nav__container {
+      width: 960px;
+      margin: auto;
+    }
+  }
+}
