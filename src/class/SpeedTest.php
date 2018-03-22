@@ -28,26 +28,23 @@ class SpeedTest {
 	}
 
 	public function analyseLog($date) {
-
 		$file = $this->path."/{$date}.log";
-
 		if (!file_exists($file)) {
 			return false;
 		}
-
 		$handle = fopen($file, "r");
 		while (($data = fgetcsv($handle)) !== FALSE) {
 		    $rows[] = $data;
 		}
-
 		return $rows;
-
 	}
 
 	public function update () {
-		$script = Path::get(Path::DATA).'/speedtest/';
-		$log = Path::get(Path::DATA).'/speedtest/'.date('Y-m-d').'.log';
-		exec("sh {$script} >> {$log}");
+		$script = Path::get(Path::DATA).'/speedtest/speedtest.sh';
+		$log = Path::get(Path::DATA).'/speedtest/logs/'.date('Y-m-d').'.log';
+		$cmd = "{$script} >> {$log}";
+		var_dump($cmd);
+		exec($cmd);
 	}
 
 }

@@ -1,7 +1,5 @@
-
 <div class="container">
 	<div class="row">
-
         <div class="col-3">
 			<h1>Dash</h1>
 		</div>
@@ -9,40 +7,35 @@
 
 		</div>
  	</div>
-
  	<div class="row">
-
         <div class="col-6 c-box c-box border-blue u-align-center b-blue">
 			<div class="title">Current Speed</div>	
 			<span class="php-speed-down f-size-xl"></span> /
 			<span class="php-speed-up f-size-l"></span>
 			<div>
 				Completed at <span class="php-speed-time"></span> on <span class="php-speed-date"></span>
-			</div>
-			
+			</div>		
 		</div>
 		<div class="col-6 c-box b-green">
 			<div class="title">RPI Stats</div>
-			<div> Local IP: <span class="php-ip-local"></span></div>
-			<div> External IP: <span class="php-ip-remote"></span></div>
+			<div><b>Local IP:</b> <span class="php-ip-local"></span></div>
+			<div><b>External IP</b> <span class="php-ip-remote"></span></div>
+			<div><b>CPU Load:</b> <span class="php-cpu-load"></span> (<span class="php-cpu-cores"></span> Cores)</div>
+			<div><b>RAM Usage:</b> <span class="php-memory-usage"></span> <b>Disk Usage:</b> <span class="php-disk-usage"></span></div>
 		</div>
  	</div>
-
 	<div class="row">
 		<div class="col-12 c-box">
-
-			Todo For MVP<br />
-			1) Add Basic Styling and Header: X<br />
-			2) Add a CSS Grid Systm: X <br />
-			3) Setup Internet Data and Display on Dash X<br />
-			4) Setup Cronjob <br />
-			5) Show Last Days Logs <br />
-			6) Add User / AUth System<br />
-
-			Stage2 <br />
-			- Enable Account Modification<br />
-			- Add RPI Stats and Reboot Functionality <br />
-
+			<div class="title">Todays Logs</div>
+			<div data-template="log-row">
+				<div class="row table-row">
+			        <div class="col-3 php-date">date</div>
+			        <div class="col-3 php-time">time</div>
+			        <div class="col-2 php-down"></div>
+			        <div class="col-2 php-up"></div>
+			        <div class="col-2 php-ping"></div>
+			 	</div>
+			</div>
 		</div>
  	</div>
 </div>
