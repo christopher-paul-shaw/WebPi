@@ -25,6 +25,36 @@ class User {
 		return file_put_contents($path, '');
 	}
 
+	public function changePassword ($current=false, $new=false, $confirm=false) {
+		
+		$realPassword = $this->getValue('password');
+		
+		if (!$current) {
+			throw new Exception("Current Password Can Not Be Blank");
+		}
+
+		if ($this->password_hash($current) != $realPassword) {
+			throw new Exception("Current Password Incorrect");
+		}
+
+		if (empty($new)) {
+			throw new Exception("New Password can not be blank");
+		}
+
+
+		if ($new != $confirm) {
+			throw new Exception("New Passwords Do Not Match");
+		}
+
+		$this->setValue('password',$this->password_hash($new));
+
+		throw new Exception("Password Updated");
+	}
+
+
+	private function password_hash ($password) {
+		return md5($password);
+	}
 	public static function isLoggedIn ($ip_locked = true) {
 
 		if (empty($_SESSION['email'])) {
@@ -47,7 +77,7 @@ class User {
 
 	public static function logIn ($email, $password_ori) {
 		$user = new self($email);
-		$password = md5($password);
+		$password = $user->password_hash($password);
 		$realPassword = $user->getValue('password');
 		if (!$realPassword || $password != $realPassword) {
 			throw new Exception("Failed to Login");
@@ -65,5 +95,7 @@ class User {
 	public static function logOut () {
 		session_destroy();
 	}
+
+
 
 }

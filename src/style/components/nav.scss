@@ -5,7 +5,7 @@
   * {
     color: #fff;
   }
-
+  box-sizing: border-box;
   opacity: 0.9;
   z-index: 99;
   margin-bottom: 10px;
@@ -73,7 +73,7 @@
     .c-nav__logo,
     .c-nav__toggle {
       padding: 0px 20px;
-      width: 40%;
+      width: 30%;
     }
     .c-nav__toggle {
       text-align: right;
@@ -110,7 +110,7 @@
       float: right;
     }
     .c-nav__container {
-      width: 960px;
+      width: 900px;
       margin: auto;
     }
   }

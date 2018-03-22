@@ -4,19 +4,20 @@ use App\User;
 use Exception;
 use Gt\Response\Headers;
 
-class Login extends \Gt\Page\Logic {
+class Settings extends \Gt\Page\Logic {
 
 
 	public function go() {
-		if (User::isLoggedIn()) {
-			Headers::redirect("/");
+		if (!User::isLoggedIn()) {
+			Headers::redirect("/auth/login");
 		}
 	}
 
-	public function do_login ($data) {
+	public function do_update ($data) {
 		
 		try {
-			User::logIn($data['email'], $data['password']);
+			$user = new User($_SESSION['email']);
+			$user->changePassword($data['current_password'], $data['new_password'], $data['confirm_password']);
 			Headers::redirect("/");
 			die;
 		}
@@ -25,7 +26,6 @@ class Login extends \Gt\Page\Logic {
 			$t->textContent = $e->getMessage();
 			$t->insertTemplate();
 		}
-
 	}
 
 
