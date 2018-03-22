@@ -77,7 +77,7 @@ class User {
 
 	public static function logIn ($email, $password_ori) {
 		$user = new self($email);
-		$password = $user->password_hash($password);
+		$password = $user->password_hash($password_ori);
 		$realPassword = $user->getValue('password');
 		if (!$realPassword || $password != $realPassword) {
 			throw new Exception("Failed to Login");
