@@ -1,26 +1,28 @@
 <?php
 namespace App\Page\Auth;
 use App\User;
+use Exception;
+use Gt\Response\Headers;
 
 class Login extends \Gt\Page\Logic {
 
 
 	public function go() {
-		var_dump($_SESSION);
-	
 
 	}
 
 	public function do_login ($data) {
-		var_dump($data);
-
-		$result = User::logIn($data['email'], $data['password']);
-		var_dump($result); print 'x';
-
-
-
-
-		die;
+		
+		try {
+			User::logIn($data['email'], $data['password']);
+			Headers::redirect("/");
+			die;
+		}
+		catch (Exception $e) {
+			$t = $this->template->get("error");
+			$t->textContent = $e->getMessage();
+			$t->insertTemplate();
+		}
 
 	}
 

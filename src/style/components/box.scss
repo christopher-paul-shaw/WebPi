@@ -40,7 +40,12 @@
 		border-color: #F6D155;
 	}
 
-
+	>.error {
+		border: 1px solid #ccc;
+		background: #efefef;
+		padding: 4px;
+		margin-top: 8px;
+	}
 
 	>.title {
 		text-align: left;

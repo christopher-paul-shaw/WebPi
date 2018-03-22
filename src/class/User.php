@@ -44,7 +44,7 @@ class User {
 		$user = new self($email);
 		$realPassword = $user->getValue('password');
 		if (!$realPassword || $password != $realPassword) {
-			throw new Exception("Invalid Login");
+			throw new Exception("Failed to Login");
 		}
 
 		$ip = $_SERVER['REMOTE_ADDR'];
