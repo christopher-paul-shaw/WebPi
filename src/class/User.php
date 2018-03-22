@@ -41,7 +41,6 @@ class User {
 	}
 
 	public static function logIn ($email, $password) {
-
 		$user = new self($email);
 		$realPassword = $user->getValue('password');
 		if (!$realPassword || $password != $realPassword) {
@@ -52,11 +51,9 @@ class User {
 		$token = rand(0,9000);
 
 		$_SESSION['email'] = $email;
-		$_SESSION['token'] = $_SERVER['token'];
+		$_SESSION['token'] = $token;
 		$user->setValue('ip', $_SERVER['REMOTE_ADDR']);
 		$user->setValue('token', $token);
-		
-
 	}
 
 	public static function logOut () {

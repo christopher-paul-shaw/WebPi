@@ -4,10 +4,26 @@
 	box-sizing: border-box;
 	border-top: 4px solid #2c3e50;
 
-
 	-webkit-box-shadow: 0 3px 10px 1px #B8B8B8;
 	box-shadow: 0 3px 10px 1px #B8B8B8;
 
+	input, select, textarea {
+		width: 100%;
+		display: block;
+		padding: 8px;
+		box-sizing: border-box;
+	}
+
+	button {
+		padding: 8px;	
+		background-color: #00A591;
+		border: 0px;
+		font-weight: bold;
+		color: #fff;
+		text-align: center;
+		min-width: 150px;
+	}
+	
 	&.b-blue {
 		border-color: #6F9FD8;
 	}
@@ -23,6 +39,8 @@
 	&.b-yellow {
 		border-color: #F6D155;
 	}
+
+
 
 	>.title {
 		text-align: left;
