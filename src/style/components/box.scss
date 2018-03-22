@@ -4,7 +4,6 @@
 	box-sizing: border-box;
 	border-top: 4px solid #2c3e50;
 
-
 	-webkit-box-shadow: 0 3px 10px 1px #B8B8B8;
 	box-shadow: 0 3px 10px 1px #B8B8B8;
 
@@ -31,6 +30,10 @@
 		margin: auto -8px;
 		padding: 0px 8px;
 		font-wize: 1.4rem;
+	}
+
+	.table-row {
+		border-bottom: 1px dashed #efefef;
 	}
 
 }
