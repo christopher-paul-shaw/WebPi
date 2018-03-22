@@ -20,6 +20,11 @@ class User {
 		return file_put_contents($path, $value);
 	}
 
+	public function blankValue ($field) {
+		$path = $this->path."{$this->email}/{$field}.dat";
+		return file_put_contents($path, '');
+	}
+
 	public static function isLoggedIn ($ip_locked = true) {
 
 		if (empty($_SESSION['email'])) {
@@ -40,8 +45,9 @@ class User {
 		return true;			
 	}
 
-	public static function logIn ($email, $password) {
+	public static function logIn ($email, $password_ori) {
 		$user = new self($email);
+		$password = md5($password);
 		$realPassword = $user->getValue('password');
 		if (!$realPassword || $password != $realPassword) {
 			throw new Exception("Failed to Login");

@@ -7,6 +7,16 @@ class _Common extends \Gt\Page\Logic {
 
 	public function go() {
 		$this->handleLogin();
+		$this->navigation();
+	}
+
+	public function navigation () {
+		if (User::isLoggedIn()) {
+			$t = $this->template->get('logged-in');
+			if (!is_null($t)) {
+				$t->insertTemplate();
+			}
+		}
 	}
 
 	public function handleLogin() {
