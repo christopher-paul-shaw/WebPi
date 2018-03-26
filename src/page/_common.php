@@ -17,6 +17,13 @@ class _Common extends \Gt\Page\Logic {
 				$t->insertTemplate();
 			}
 		}
+
+		if (User::isAdmin()) {
+			$t = $this->template->get('admin');
+			if (!is_null($t)) {
+				$t->insertTemplate();
+			}
+		}
 	}
 
 	public function handleLogin() {

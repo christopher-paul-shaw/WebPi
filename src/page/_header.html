@@ -16,17 +16,22 @@
             <label for="menu_toggle" class="c-nav__toggle">Menu</label>
             <input type="checkbox" id="menu_toggle" class="menu_check c-nav__toggle--checkbox">
             <div class="c-nav__menu">
+               <span data-template="admin">
+                  <label>
+                        <a href="/users">Users</a>
+                  </label>
+               </span>
                <span data-template="logged-in">
-               <label>
-                     <a href="/">Dash</a>
-               </label>
-               <label>
-                     <a href="/auth/settings">Settings</a>
-               </label>
-               <label>
-               		<a href="/auth/logout">Logout</a>
-               </label>
-            </span>
+                  <label>
+                        <a href="/">Dash</a>
+                  </label>
+                  <label>
+                        <a href="/auth/settings">Settings</a>
+                  </label>
+                  <label>
+                  		<a href="/auth/logout">Logout</a>
+                  </label>
+               </span>
             </div>
          </div>
       </nav>

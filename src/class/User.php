@@ -2,6 +2,7 @@
 namespace App;
 use Gt\Core\Path;
 use Exception;
+use DirectoryIterator;
 
 class User {
 	
@@ -17,6 +18,11 @@ class User {
 
 	public function setValue ($field,$value=false) {
 		$path = $this->path."{$this->email}/{$field}.dat";
+
+		if ($field == 'password') {
+			$value = $this->password_hash($value);
+		}
+
 		return file_put_contents($path, $value);
 	}
 
@@ -34,7 +40,23 @@ class User {
 	}
 	
 	public function listUsers () {
+
+		$users = [];
+
+		$dir = new DirectoryIterator($this->path);
+		foreach ($dir as $fileinfo) {
+		    if (!$fileinfo->isDir() || $fileinfo->isDot()) continue;
 	
+		    $current = new User($fileinfo->getFilename());
+		    $users[$fileinfo->getFilename()] = [
+		       	'email' => $fileinfo->getFilename(),
+		       	'name' => $current->getValue('name'),
+		       	'permission' => $current->getValue('permission'),
+		       	'ip' => $current->getValue('ip')
+			];
+		}
+
+		return $users;
 	}
 
 	public function changePassword ($current=false, $new=false, $confirm=false) {
@@ -69,8 +91,9 @@ class User {
 
 	public static function isAdmin () {
 		$user = new self($_SESSION['email']);
-		$level = $this->getValue('permission');
-		return $permisson == 'admin';
+		$level = $user->getValue('permission');
+
+		return strtolower($level) == 'admin';
 	}
 
 	public static function isLoggedIn ($ip_locked = true) {
