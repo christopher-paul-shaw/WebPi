@@ -51,10 +51,16 @@ class User {
 		throw new Exception("Password Updated");
 	}
 
-
 	private function password_hash ($password) {
 		return md5($password);
 	}
+	
+	public  statis function isAdmin () {
+		$user = new self($_SESSION['email']);
+		$level = $this->getValue('permission');
+		return $permisson == 'admin';
+	}
+
 	public static function isLoggedIn ($ip_locked = true) {
 
 		if (empty($_SESSION['email'])) {
@@ -95,7 +101,5 @@ class User {
 	public static function logOut () {
 		session_destroy();
 	}
-
-
-
+	
 }
