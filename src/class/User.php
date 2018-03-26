@@ -24,6 +24,18 @@ class User {
 		$path = $this->path."{$this->email}/{$field}.dat";
 		return file_put_contents($path, '');
 	}
+	
+	public function createUser ($payload) {
+		
+	}
+	
+	public function deleteUser () {
+	
+	}
+	
+	public function listUsers () {
+	
+	}
 
 	public function changePassword ($current=false, $new=false, $confirm=false) {
 		
@@ -54,8 +66,8 @@ class User {
 	private function password_hash ($password) {
 		return md5($password);
 	}
-	
-	public  statis function isAdmin () {
+
+	public static function isAdmin () {
 		$user = new self($_SESSION['email']);
 		$level = $this->getValue('permission');
 		return $permisson == 'admin';
