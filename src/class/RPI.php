@@ -16,12 +16,10 @@ class RPI {
 	}
 
 	public function stats () {
-
 		if ($this->cached) {
 			echo "Cached Verson";
 			return json_decode(file_get_contents($this->path.'stats.dat'),true);
 		}
-		echo "Normal Version";
 		return $this->process();
 	}
 
