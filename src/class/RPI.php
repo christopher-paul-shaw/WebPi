@@ -6,12 +6,14 @@ class RPI {
 	public $externalIpUrl = "http://ipecho.net/plain";
 
 	public function __construct() {
-
+		$this->path = Path::get(Path::DATA).'/rpi/';
 	}
 
-
 	public function stats () {
+		return json_decode(file_get_contents($this->path.'stats.dat'),true);
+	}
 
+	public function store_stats () {
 
 		$stats = [];
 
@@ -57,8 +59,9 @@ class RPI {
 	
 		if ($stats['os'] == "linux") {
 			$stats['uptime'] = floor(preg_replace ('/\.[0-9]+/', '', file_get_contents('/proc/uptime')) / 86400);
-	    }
-		return $stats;
+		}
+
+		file_put_contents($this->path.'stats.dat',json_encode($stats);
 	}
 
 }
