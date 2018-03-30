@@ -4,12 +4,16 @@
   background: #2c3e50;
   * {
     color: #fff;
+    clear: both;
   }
   box-sizing: border-box;
-  opacity: 0.9;
+  
   z-index: 99;
   margin-bottom: 10px;
 
+  div {
+    min-height: 50px;
+  }
   a {
     text-decoration: none;
     color: #fff;
@@ -36,10 +40,15 @@
     display: inline-block;
     min-height: 50px;
     line-height: 50px;
+    vertical-align: top;
   }
 
   .c-nav__menu label {
     line-height: 50px;
+  }
+
+  .c-nav__menu div label {
+  position: absolute;
   }
 
   // Sub Menus, Not Currently Used
@@ -48,17 +57,30 @@
     padding: 0px 4px;
   }
   .c-nav__menu .sub {
+  z-index: 2000;
     display: none;
     position: absolute;
-    background: #333;
+    background: #c1c1c1;
+    padding: 0px;
     margin-left: -4px;
-    margin-top: 4px;
+    margin-top: 15px;
+    color: #111;
+    border: 1px solid red;
   }
-  .c-nav__menu label:hover > .sub {
+
+  .c-nav__menu input[type="checkbox"] {
+    display: none;
+  }
+  .c-nav__menu input[type="checkbox"]:checked ~ .sub {
     display: block;
   }
-  .c-nav__menu .sub label {
+  .c-nav__menu .sub a {
     display: block;
+    padding: 2px;
+    z-index: 5000;
+    border: 1px solid blue;
+    text-align: center;
+    margin: 0px;
   }
   .c-nav__menu .sub label:not(:first-child) {
     border-top: 1px solid rgba(190, 192, 192, 0.1);
