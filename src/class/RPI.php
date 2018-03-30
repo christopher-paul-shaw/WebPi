@@ -1,17 +1,29 @@
 <?php
 namespace App;
+use Gt\Core\Path;
 
 class RPI {
 
 	public $externalIpUrl = "http://ipecho.net/plain";
+	public $cached;
 
-	public function __construct() {
-
+	public function __construct($cached=false) {
+		$this->cached = $cached;
+		$this->path = Path::get(Path::DATA).'/rpi/';
+		if (!file_exists($this->path)) {
+    			mkdir($ths->path, 0777, true);
+		}
 	}
 
-
 	public function stats () {
+		if ($this->cached) {
+			echo "Cached Verson";
+			return json_decode(file_get_contents($this->path.'stats.dat'),true);
+		}
+		return $this->process();
+	}
 
+	public function process () {
 
 		$stats = [];
 
@@ -37,8 +49,8 @@ class RPI {
 		}
 		 
 		if ($cmd != '') {
-	       $cpuCoreNo = intval(trim(shell_exec($cmd)));
-	       $stats['cpu_cores'] = $cpuCoreNo;
+			$cpuCoreNo = intval(trim(shell_exec($cmd)));
+			$stats['cpu_cores'] = $cpuCoreNo;
 		}
 
 		// Memory Usage
@@ -57,7 +69,8 @@ class RPI {
 	
 		if ($stats['os'] == "linux") {
 			$stats['uptime'] = floor(preg_replace ('/\.[0-9]+/', '', file_get_contents('/proc/uptime')) / 86400);
-	    }
+		}
+		file_put_contents($this->path.'stats.dat',json_encode($stats));
 		return $stats;
 	}
 
