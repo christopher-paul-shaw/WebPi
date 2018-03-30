@@ -18,7 +18,6 @@ class User {
 
 	public function setValue ($field,$value=false) {
 		$path = $this->path."{$this->email}/{$field}.dat";
-
 		if ($field == 'password') {
 			$value = $this->password_hash($value);
 		}
@@ -32,11 +31,34 @@ class User {
 	}
 	
 	public function createUser ($payload) {
-		
+
+		if (empty($payload['email'])) {
+			throw new Exception("Email can not be blank");
+		}
+		if (empty($payload['name'])) {
+			throw new Exception("Name can not be blank");
+		}
+		if (empty($payload['password'])) {
+			throw new Exception("Password can not be blank");
+		}
+		$this->email = $payload['email'];
+		$this->user_path = $this->path.$payload['email'].'/';
+		$user_directory = file_exists($this->user_path);
+
+		if ($user_directory) {
+			throw new Exception("Email is currently in use");
+		}
+		else {
+			mkdir($this->user_path, 0777, true);
+		}
+
+		$this->setValue('name',$payload['name']);
+		$this->setValue('permission',$payload['permission']);
+		$this->setValue('password',$payload['password']);
 	}
 	
 	public function deleteUser () {
-	
+		unlink($this->path.$this->email);
 	}
 	
 	public function listUsers () {
@@ -75,12 +97,11 @@ class User {
 			throw new Exception("New Password can not be blank");
 		}
 
-
 		if ($new != $confirm) {
 			throw new Exception("New Passwords Do Not Match");
 		}
 
-		$this->setValue('password',$this->password_hash($new));
+		$this->setValue('password',$new);
 
 		throw new Exception("Password Updated");
 	}

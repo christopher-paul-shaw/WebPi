@@ -40,7 +40,7 @@
 		border-color: #F6D155;
 	}
 
-	>.error {
+	.error {
 		border: 1px solid #ccc;
 		background: #efefef;
 		padding: 4px;
@@ -54,6 +54,18 @@
 		margin: auto -8px;
 		padding: 0px 8px;
 		font-wize: 1.4rem;
+		width: 100%;
+		display: block;
+	}
+
+	.show {
+			display: none;
+	}
+	.show + span {
+			display: none;
+	}
+	.show:checked + span {
+			display: block;
 	}
 
 	.table-row {

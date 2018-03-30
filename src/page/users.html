@@ -4,21 +4,39 @@
 			<h1>Users</h1>
 		</div>
 		<div class="col-9">
-			Need<br />
-			1. Add Account Option<br />
-			2. Delete Account Option
+		
 		</div>
  	</div>
 	<div class="row">
+		<div class="col-12 c-box b-green">
+			<label for="add-user-toggle" class="title">Add User</label>
+			<input type="checkbox" class="show php-add-show" id="add-user-toggle" />
+			<span>
+				<div data-template="error" class="error"></div>
+				<form method="post">	
+					<input type="hidden" name="do" value="add" />
+					Email
+					<input type="text" name="email" />
+					Name
+					<input type="text" name="name" />
+					Password
+					<input type="password" name="password" />
+					Permission
+					<select name="permission" class="php-add-permissions"></select><br />
+					<button type="submit">Create</button>
+				</form>
+			</span>
+		</div>
+ 	</div>
+ 	<div class="row">
 		<div class="col-12 c-box">
 			<div class="title">User Accounts</div>
 			<div>
 				<div class="row">
-	
-			        	<div class="col-2">Email</div>
-			        	<div class="col-2">Name</div>
-			        	<div class="col-2">Password</div>
-			        	<div class="col-2">Permission</div>
+			        	<div class="col-2"><b>Email</b></div>
+			        	<div class="col-2"><b>Name</b></div>
+			        	<div class="col-2"><b>Password</b></div>
+			        	<div class="col-2"><b>Permission</b></div>
 			        	<div class="col-2"></div>
 			    	</form>
 			 	</div>

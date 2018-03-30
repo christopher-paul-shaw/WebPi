@@ -2,8 +2,16 @@
 namespace App\Page;
 use App\User;
 use Gt\Response\Headers;
+use Exception;
 
 class Users extends \Gt\Page\Logic {
+
+	public $options = [
+				'permission' => [
+						'admin' => 'Admin',
+						'user' => 'User'
+				]
+		];
 
 	public function go() {
 
@@ -12,9 +20,29 @@ class Users extends \Gt\Page\Logic {
 			die;
 		}
 
+		$this->outputPage();
 		$this->outputUserList();
 	}
 
+
+	public function outputPage () {
+
+		$e = $this->document->querySelector('.php-add-permissions');
+		if ($e) {
+			if ($e && $this->options['permission']) {
+				foreach ($this->options['permission'] as $o) {
+					$ele = $this->document->createElement('option');
+					$ele->value = $o;
+					$ele->textContent = $o;
+					if ($o == 'User') {
+						$ele->setAttribute('selected','selected');
+					}
+					$e->appendChild($ele);
+				}
+			}
+		}
+
+	}
 	public function outputUserList () {
 
 		$user = new User();
@@ -27,14 +55,10 @@ class Users extends \Gt\Page\Logic {
 			$t->insertTemplate();
 		}	
 
-	}
+	}		
 
 	public function fillForm ($node, $data) {
 
-		$options['permission'] = [
-			'admin' => 'Admin',
-			'user' => 'User'
-		];
 
 		$current = new User($data['email']);
 		foreach ($data as $key => $v) {
@@ -45,8 +69,8 @@ class Users extends \Gt\Page\Logic {
 			}
 
 			$select = $node->querySelector("select[name='{$key}']");
-			if ($select && $options[$key]) {
-				foreach ($options[$key] as $o) {
+			if ($select && $this->options[$key]) {
+				foreach ($this->options[$key] as $o) {
 					$ele = $this->document->createElement('option');
 					$ele->value = $o;
 					$ele->textContent = $o;
@@ -84,5 +108,19 @@ class Users extends \Gt\Page\Logic {
 		Headers::redirect("/users");
 	}
 
+	public function do_add ($data) {
+		try {
+			$user = new User();
+			$user->createUser($data);
+			Headers::redirect("/users");
+			die;
+		}
+		catch (Exception $e) {
+			$t = $this->template->get("error");
+			$t->textContent = $e->getMessage();
+			$t->insertTemplate();
+			$this->document->querySelector('.php-add-show')->setAttribute("checked","checked");
+		}
+	}
 
 }
