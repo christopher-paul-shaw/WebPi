@@ -115,7 +115,7 @@ class User {
 	}
 
 	private function password_hash ($password) {
-		return md5($password);
+		return password_hash($password, PASSWORD_BCRYPT);
 	}
 
 	public static function isAdmin () {
@@ -146,11 +146,11 @@ class User {
                 return true;
         }
 
-        public static function logIn ($email, $password_ori) {
+        public static function logIn ($email, $password) {
                 $user = new self($email);
-                $password = $user->password_hash($password_ori);
+                
                 $realPassword = $user->getValue('password');
-                if (!$realPassword || $password != $realPassword) {
+                if (!password_verify($password, $realPassword)) {
                         throw new Exception("Failed to Login");
                 }
 
