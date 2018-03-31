@@ -37,20 +37,6 @@ class User {
                 $path = $this->path."{$this->email}/{$field}.dat";
                 return file_put_contents($path, '');
         }
-
-	public function setValue ($field,$value=false) {
-		$path = $this->path."{$this->email}/{$field}.dat";
-		if ($field == 'password') {
-			$value = $this->password_hash($value);
-		}
-
-		return file_put_contents($path, $value);
-	}
-
-	public function blankValue ($field) {
-		$path = $this->path."{$this->email}/{$field}.dat";
-		return file_put_contents($path, '');
-	}
 	
 	public function createUser ($payload) {
 
