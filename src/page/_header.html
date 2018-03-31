@@ -17,8 +17,12 @@
             <input type="checkbox" id="menu_toggle" class="menu_check c-nav__toggle--checkbox">
             <div class="c-nav__menu">
                <span data-template="admin">
-                  <label>
-                        <a href="/users">Users</a>
+                   <label>
+                        <a class="php-user-name">Admin</a>
+                        <input type="checkbox" />
+                        <div class="sub">
+                           <a href="/users">Users</a>
+                        </div>
                   </label>
                </span>
                <span data-template="logged-in">
@@ -26,21 +30,14 @@
                         <a href="/">Dash</a>
                   </label>
                   <label>
-                        <a>USER</a>
+                        <a class="php-user-name">USER</a>
                         <input type="checkbox" />
                         <div class="sub">
-                           <a href="/auth/settings">Settings</a><br />
-                           <a href="/auth/logout">Logout</a><br />
+                           <a href="/auth/settings">Settings</a>
+                           <a href="/auth/logout">Logout</a>
                         </div>
                   </label>
-         <label>
-                        <a>USER</a>
-                        <input type="checkbox" />
-                        <div class="sub">
-                           <a href="/auth/settings">Settings</a><br />
-                           <a href="/auth/logout">Logout</a><br />
-                        </div>
-                  </label>
+
                </span>
             </div>
          </div>

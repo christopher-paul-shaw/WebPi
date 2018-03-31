@@ -6,8 +6,9 @@
     color: #fff;
     clear: both;
   }
-  box-sizing: border-box;
-  
+  * {
+    box-sizing: border-box;
+  }
   z-index: 99;
   margin-bottom: 10px;
 
@@ -45,6 +46,8 @@
 
   .c-nav__menu label {
     line-height: 50px;
+    min-width: 80px;
+    text-align: center;
   }
 
   .c-nav__menu div label {
@@ -60,12 +63,12 @@
   z-index: 2000;
     display: none;
     position: absolute;
-    background: #c1c1c1;
+    background: #fff;
     padding: 0px;
     margin-left: -4px;
     margin-top: 15px;
-    color: #111;
-    border: 1px solid red;
+    width:80px;
+  
   }
 
   .c-nav__menu input[type="checkbox"] {
@@ -76,13 +79,13 @@
   }
   .c-nav__menu .sub a {
     display: block;
-    padding: 2px;
     z-index: 5000;
-    border: 1px solid blue;
     text-align: center;
     margin: 0px;
+    padding: 10px;
+    color: #111;
   }
-  .c-nav__menu .sub label:not(:first-child) {
+  .c-nav__menu .sub a:not(:first-child) {
     border-top: 1px solid rgba(190, 192, 192, 0.1);
   }
 
@@ -110,13 +113,16 @@
     }
     .c-nav__menu label {
       text-align: left;
-      padding-left: 10px;
+      padding: 10px;
       position: relative;
       border-top: 1px solid rgba(190, 192, 192, 0.1);
       height: auto;
       display: block;
     }
-    
+      .c-nav__menu .sub {
+        width: 100%;
+        margin-left: -10px;
+      }    
   }
 
   // Desktop

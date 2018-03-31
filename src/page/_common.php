@@ -16,6 +16,14 @@ class _Common extends \Gt\Page\Logic {
 			if (!is_null($t)) {
 				$t->insertTemplate();
 			}
+
+			$user = new User($_SESSION['email']);
+			$name = $user->getValue('name');
+
+			$nameElement = $this->document->querySelectorAll('.php-user-name');
+			foreach ($nameElement as $e) {
+				$e->textContent = $name;
+			}
 		}
 
 		if (User::isAdmin()) {

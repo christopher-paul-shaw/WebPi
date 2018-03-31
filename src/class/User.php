@@ -7,7 +7,7 @@ use DirectoryIterator;
 class User {
         public $mutliLogin = true;
         public $ipLocked = false;
-        public $readOnly = true;
+        public $readOnly = false;
 
         public function __construct ($email=false) {
                 $this->email = $email;
