@@ -3,16 +3,24 @@ namespace App;
 use Gt\Core\Path;
 use Exception;
 use DirectoryIterator;
+use Gt\Core\Config;
 
 class User {
-        public $mutliLogin = true;
+        public $mutliLogin = false;
         public $ipLocked = false;
         public $readOnly = false;
 
         public function __construct ($email=false) {
                 $this->email = $email;
                 $this->path = Path::get(Path::DATA).'/user/';
+                $this->config = new Config();
+   
+        		$this->multiLogin = !empty($this->config['user']->multiLogin);
+        		$this->ipLocked = !empty($this->config['user']->ipLocked);
+        		$this->readOnly = !empty($this->config['user']->readOnly);
         }
+
+
 
         public function getValue ($field) {
                 $path = $this->path."{$this->email}/{$field}.dat";
