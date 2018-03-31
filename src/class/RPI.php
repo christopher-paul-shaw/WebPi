@@ -1,6 +1,7 @@
 <?php
 namespace App;
 use Gt\Core\Path;
+use Gt\Core\Config;
 
 class RPI {
 
@@ -11,13 +12,15 @@ class RPI {
 		$this->cached = $cached;
 		$this->path = Path::get(Path::DATA).'/rpi/';
 		if (!file_exists($this->path)) {
-    			mkdir($ths->path, 0777, true);
+    			mkdir($this->path, 0777, true);
 		}
+
+		$this->config = new Config();
+   		$this->cached = !empty($this->config['rpi']->useCached);
 	}
 
 	public function stats () {
 		if ($this->cached) {
-			echo "Cached Verson";
 			return json_decode(file_get_contents($this->path.'stats.dat'),true);
 		}
 		return $this->process();
