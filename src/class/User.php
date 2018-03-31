@@ -140,7 +140,7 @@ class User {
                 }
 
                 $user = new self($_SESSION['email']);
-                if (!empty($user->multiLogin) && (empty($_SESSION['token']) || $_SESSION['token'] != $user->getValue('token'))) {
+                if (empty($user->multiLogin) && (empty($_SESSION['token']) || $_SESSION['token'] != $user->getValue('token'))) {
                         $user->logOut();
                         return false;
                 }
