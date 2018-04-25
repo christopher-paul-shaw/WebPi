@@ -93,6 +93,11 @@ class Users extends \Gt\Page\Logic {
 
 		$current = new User($data['email']);
 
+		if (isset($data['delete'])) {
+			$current->deleteUser();
+			Headers::redirect("/users");
+		}
+
 		if (!empty($data['name'])) {
 			$current->setValue('name',$data['name']);
 		}

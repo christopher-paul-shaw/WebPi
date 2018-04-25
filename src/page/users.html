@@ -33,8 +33,8 @@
 			<div class="title">User Accounts</div>
 			<div>
 				<div class="row">
-			        	<div class="col-2"><b>Email</b></div>
-			        	<div class="col-2"><b>Name</b></div>
+			        	<div class="col-3"><b>Email</b></div>
+			        	<div class="col-3"><b>Name</b></div>
 			        	<div class="col-2"><b>Password</b></div>
 			        	<div class="col-2"><b>Permission</b></div>
 			        	<div class="col-2"></div>
@@ -46,11 +46,11 @@
 					<form method="post" autocomplete="off">
 						<input type="hidden" name="email" />
 						<input type="hidden" name="do" value="edit" />
-			        	<div class="col-2 php-email">Email</div>
-			        	<div class="col-2"><input type="text" name="name" autocomplete="off" /></div>
+			        	<div class="col-3 php-email">Email</div>
+			        	<div class="col-3"><input type="text" name="name" autocomplete="off" /></div>
 			        	<div class="col-2"><input type="password" name="password" autocomplete="off" /></div>
 			        	<div class="col-2"><select name="permission"><option></option></select></div>
-			        	<div class="col-2 php-up"><button type="submit">Edit</button></div>
+			        	<div class="col-2"><button type="submit" name="edit">Edit</button> <button type="submit" name="delete" class="u-bg-red js-confirm">Delete</button></div>
 			    	</form>
 			 	</div>
 			</div>

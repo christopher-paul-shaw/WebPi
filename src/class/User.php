@@ -74,9 +74,22 @@ class User {
 	}
 	
 	public function deleteUser () {
-		unlink($this->path.$this->email);
+		if($this->readOnly) {
+        	return false;
+        }
+		$path = $this->path.$this->email;
+		$this->removeDirectory($path);
 	}
 	
+	public function removeDirectory($path) {
+	 	$files = glob($path . '/*');
+		foreach ($files as $file) {
+			is_dir($file) ? $this->removeDirectory($file) : unlink($file);
+		}
+		rmdir($path);
+	 	return;
+	}
+
 	public function listUsers () {
 
 		$users = [];
