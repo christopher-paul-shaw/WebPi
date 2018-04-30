@@ -1,13 +1,8 @@
 @media screen and (min-width: 0px) {
-
 	@import "base/colors";
 	@import "base/fonts";
 	@import "base/utilities";
 	@import "components/nav";
 	@import "components/box";
-
-	@import "vendor/simple-grid";
-
-
-
+	@import "vendor/grid";
 }

@@ -1,0 +1,67 @@
+
+body {
+  margin: 0px;
+}
+nav {
+  background: #efefef;
+}
+
+* {
+  box-sizing: border-box;
+}
+$breakPoints : (
+  'xxl': 18000px,
+  'xl': 1400px,
+  'lg': 800px,
+  'md': 400px,
+  'sm': 200px
+);
+
+.row {
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+  &--full {
+   max-width: 100%;
+   width: 100%;
+  }
+}
+
+@mixin grid_columns($columns, $breakpoint) {
+  $split: 1000px;
+  $width: 100% / $columns;
+  $display: 'inline-block';
+  @if ($breakpoint < $split) {
+    $display: 'block';
+    .row {
+      width: 90%;
+    }
+  }
+  @for $i from 1 through $columns {
+       $current_width: $i * $width - 1;
+       @if ($breakpoint < $split) {
+            $current_width: 100%;
+       }
+       .col-#{$i} { 
+          box-sizing: border-box;
+          text-align: left;
+          padding: 8px;
+    
+          vertical-align: middle;
+            display: #{$display};
+            width: $current_width;
+       }
+  }
+}
+
+@each $k , $v in $breakPoints {
+  @media (max-width:#{$v}) {
+    @include grid_columns(12,$v);  
+     
+ }
+ .u-#{$k}-hide { 
+    display: none;
+ }
+  
+}

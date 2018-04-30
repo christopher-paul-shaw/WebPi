@@ -60,15 +60,14 @@
     padding: 0px 4px;
   }
   .c-nav__menu .sub {
-  z-index: 2000;
+    z-index: 2000;
     display: none;
     position: absolute;
     background: #fff;
     padding: 0px;
     margin-left: -4px;
-    margin-top: 15px;
     width:80px;
-  
+   
   }
 
   .c-nav__menu input[type="checkbox"] {
@@ -82,15 +81,15 @@
     z-index: 5000;
     text-align: center;
     margin: 0px;
-    padding: 10px;
     color: #111;
+     border: 1px solid #ccc;
   }
   .c-nav__menu .sub a:not(:first-child) {
     border-top: 1px solid rgba(190, 192, 192, 0.1);
   }
 
   // Mobile Only Logic
-  @media screen and (max-width: 750px) { 
+  @media screen and (max-width: 900px) { 
     .c-nav__menu {
       display: none;
       position: relative;
@@ -126,7 +125,7 @@
   }
 
   // Desktop
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 900px) {
     width: 100%;
     top: 0px; 
     .c-nav__toggle {

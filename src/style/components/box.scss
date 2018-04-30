@@ -3,6 +3,7 @@
 	padding: 8px;
 	box-sizing: border-box;
 	border-top: 4px solid #2c3e50;
+	margin-bottom: 20px;
 
 	-webkit-box-shadow: 0 3px 10px 1px #B8B8B8;
 	box-shadow: 0 3px 10px 1px #B8B8B8;
@@ -40,7 +41,6 @@
 		border-color: #F6D155;
 	}
 
-
 	.error {
 		border: 1px solid #ccc;
 		background: #efefef;
@@ -52,8 +52,8 @@
 		text-align: left;
 		font-weight: bold;
 		border-bottom: 1px solid #efefef;
-		margin: auto -8px;
-		padding: 0px 8px;
+
+		padding: 10px;
 		font-wize: 1.4rem;
 		width: 100%;
 		display: block;
