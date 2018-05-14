@@ -1,6 +1,7 @@
-var confirm = document.querySelectorAll('.js-confirm');
-for(var i = 0; i < savedCars.length; i++) {
-	confirm[i].addEventListener("clicked", function(e){
-		var message = confirm("Do you want to continue with this action?");
-	});
+var elems = document.querySelectorAll('.js-confirm');
+var confirmIt = function (e) {
+    if (!confirm('Are you sure?')) e.preventDefault();
+};
+for (var i = 0, l = elems.length; i < l; i++) {
+    elems[i].addEventListener('click', confirmIt, false);
 }
