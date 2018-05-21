@@ -7,7 +7,6 @@ use Gt\Core\Config;
 
 class Entity {
 
-    public $storage = '/storage/';
     public $type = 'default';
     
     public $ignore = [];
@@ -16,7 +15,7 @@ class Entity {
 
     public function __construct ($identifier=false) {
         $this->identifier = strtolower($identifier);
-        $this->path = "{$this->storage}/{$this->type}/";
+        $this->path = Path::get(Path::DATA)."/{$this->type}/";
         $this->currentDirectory =  $this->path.$this->identifier;    
     }
 
