@@ -9,7 +9,9 @@ class Entity {
 
     public $type = 'default';
     
-    public $ignore = [];
+    public $blockFields = [];
+    protected $privateFields = [];
+
     public $readOnly = false;
     public $ipLocked = false;
 
@@ -41,28 +43,24 @@ class Entity {
     
     public function search ($filters=false) { 
         $items = [];
+
         $dir = new DirectoryIterator($this->path);
 
 		foreach ($dir as $fileinfo) {
 		    if (!$fileinfo->isDir() || $fileinfo->isDot()) continue;
 	        $identifier = $fileinfo->getFilename();
-          
-            $items[$identifier] = [];
-            $this->currentDirectory = str_replace('.','',$this->path.$identifier);
-
-
-
-            // Load Values 
-            $current = new DirectoryIterator($this->currentDirectory);
-            var_dump($current);
-           
-		    foreach ($current as $field) {
-               $items[$identifier][$field] = $this->getValue($field);
+            $items[$identifier]['id'] = $identifier;
+            $this->currentDirectory = $this->path.$identifier.'/';
+            $valuesDirectory = new DirectoryIterator($this->currentDirectory);
+            foreach ($valuesDirectory as $valueinfo) {
+                if ($valueinfo->isDot()) continue;
+                $field = explode('.',$valueinfo->getFilename())[0];
+                if (in_array($field, $this->privateFields)) continue;
+                $items[$identifier][$field] = $this->getValue($field);
             }
+         
         }
 
-
-        var_dump($items);
         return $items;  
     }
 
@@ -72,9 +70,7 @@ class Entity {
     }
 
     public function setValue ($field,$value=false) {
-   
-        if (in_array($field,$ignore) || $readOnly) return;
-        
+        if (in_array($field,$this->blockFields) || $this->readOnly) return;
         $path = "{$this->currentDirectory}/{$field}.dat";
         return file_put_contents($path, $value);
     }
@@ -85,13 +81,11 @@ class Entity {
     }
 
     public function removeDirectory($path) {
-    
         if ($readOnly) return; 
-     
-	 	     $files = glob($path . '/*');
-		      foreach ($files as $file) {
+        $files = glob($path . '/*');
+		foreach ($files as $file) {
             is_dir($file) ? $this->removeDirectory($file) : unlink($file);
-		      }
+		}
         rmdir($path);
     }
 }

@@ -50,7 +50,6 @@ class Users extends \Gt\Page\Logic {
 
 		foreach ($list as $u) {
 			$t = $this->template->get('user-row');
-			
 			$t = $this->fillForm($t,$u);
 			$t->insertTemplate();
 		}	
@@ -59,8 +58,8 @@ class Users extends \Gt\Page\Logic {
 
 	public function fillForm ($node, $data) {
 
-
-		$current = new User($data['email']);
+		$data['email'] = $data['id'];
+		$current = new User($data['id']);
 		foreach ($data as $key => $v) {
 
 			$elements = $node->querySelectorAll("[name='{$key}'],.php-{$key}");
@@ -94,7 +93,7 @@ class Users extends \Gt\Page\Logic {
 		$current = new User($data['email']);
 
 		if (isset($data['delete'])) {
-			$current->deleteUser();
+			$current->delete();
 			Headers::redirect("/users");
 		}
 
@@ -115,8 +114,8 @@ class Users extends \Gt\Page\Logic {
 
 	public function do_add ($data) {
 		try {
-			$user = new User();
-			$user->createUser($data);
+			$user = new User($data['email']);
+			$user->create($data);
 			Headers::redirect("/users");
 			die;
 		}

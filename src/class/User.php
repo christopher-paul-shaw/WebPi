@@ -11,11 +11,15 @@ class User extends Entity {
 	public $type = 'user';
 	public $storage = '/data';
 	
-	public $ignore = [
+	public $blockFields = [
 		'current_password',
 		'new_password',
 		'confirm_password',    
-	];    
+	];   
+
+	public $privateFields = [
+		'password',    
+	];     
 	
 	public function changePassword (
 	$current=false, 
