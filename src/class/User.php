@@ -21,6 +21,14 @@ class User extends Entity {
 		'password',    
 	];     
 	
+
+	public function __construct ($identifier=false) {
+    	parent::__construct($identifier);
+    	$this->config = new Config();
+        $this->ipLocked = !empty($this->config['user']->ipLocked); 
+    	$this->multiLogin = !empty($this->config['user']->multiLogin); 
+	}
+
 	public function changePassword (
 	$current=false, 
 	$new=false, 

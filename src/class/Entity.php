@@ -18,7 +18,10 @@ class Entity {
     public function __construct ($identifier=false) {
         $this->identifier = strtolower($identifier);
         $this->path = Path::get(Path::DATA)."/{$this->type}/";
-        $this->currentDirectory =  $this->path.$this->identifier;    
+        $this->currentDirectory =  $this->path.$this->identifier;   
+
+        $this->config = new Config();
+        $this->readOnly = !empty($this->config['general']->readOnly); 
     }
 
     public function create ($payload) {  
