@@ -46,7 +46,7 @@ class Users extends \Gt\Page\Logic {
 	public function outputUserList () {
 
 		$user = new User();
-		$list = $user->listUsers();
+		$list = $user->search();
 
 		foreach ($list as $u) {
 			$t = $this->template->get('user-row');

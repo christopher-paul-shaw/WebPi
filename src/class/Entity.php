@@ -43,16 +43,26 @@ class Entity {
         $items = [];
         $dir = new DirectoryIterator($this->path);
 
-		      foreach ($dir as $fileinfo) {
-		          if (!$fileinfo->isDir() || $fileinfo->isDot()) continue;
-	           $identifier = $fileinfo->getFilename();
+		foreach ($dir as $fileinfo) {
+		    if (!$fileinfo->isDir() || $fileinfo->isDot()) continue;
+	        $identifier = $fileinfo->getFilename();
+          
             $items[$identifier] = [];
-            $current = new DirectoryIterator($this->path.$this->identifier);
-            $this->currentDirectory = $this->path.$this->identifier;
-		          foreach ($current as $field) {
+            $this->currentDirectory = str_replace('.','',$this->path.$identifier);
+
+
+
+            // Load Values 
+            $current = new DirectoryIterator($this->currentDirectory);
+            var_dump($current);
+           
+		    foreach ($current as $field) {
                $items[$identifier][$field] = $this->getValue($field);
             }
         }
+
+
+        var_dump($items);
         return $items;  
     }
 
