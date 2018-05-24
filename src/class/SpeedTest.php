@@ -1,7 +1,7 @@
 <?php
 namespace App;
 use Gt\Core\Path;
-
+use \Datetime;
 class SpeedTest {
 
 	public $path = false;
@@ -28,6 +28,10 @@ class SpeedTest {
 	}
 
 	public function analyseLog($date) {
+	
+		$date = new Datetime($date);
+		$date = $date->format('Y-m-d');
+
 		$file = $this->path."/{$date}.log";
 		if (!file_exists($file)) {
 			return false;
