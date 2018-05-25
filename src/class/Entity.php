@@ -67,18 +67,27 @@ class Entity {
         return $items;  
     }
 
+    public function protectField($field) {
+        if (strstr($field,'./')) {
+            throw new Exception("Invalid Field");
+        }
+    }
+
     public function getValue ($field) {
+        $this->protectField($field);
         $path = "{$this->currentDirectory}/{$field}.dat";
         return file_get_contents($path) ?? false;
     }
 
     public function setValue ($field,$value=false) {
+        $this->protectField($field);
         if (in_array($field,$this->blockFields) || $this->readOnly) return;
         $path = "{$this->currentDirectory}/{$field}.dat";
         return file_put_contents($path, $value);
     }
 
     public function blankValue ($field) {
+        $this->protectField($field);
         $path = "{$this->currentDirectory}/{$field}.dat";
         return file_put_contents($path, '');
     }
