@@ -9,7 +9,6 @@ class _Common extends \Gt\Page\Logic {
 	public function go() {
 		$this->handleLogin();
 		$this->navigation();
-		$this->toolMenu();
 	}
 
 	public function navigation () {
@@ -26,6 +25,20 @@ class _Common extends \Gt\Page\Logic {
 			foreach ($nameElement as $e) {
 				$e->textContent = $name;
 			}
+	
+			$tools = new Tools();
+	
+			$options = $tools->list();
+
+			$menu = $t->querySelector('.php-tools');
+			$links = [];
+			foreach ($options as $name => $url) {		
+				$name = ucwords($name);	
+				$links[]= "<a href=\"{$url}\">{$name}</a>";
+			}
+
+			$menu->innerHTML = implode('', $links);;
+
 		}
 
 		if (User::isAdmin()) {
@@ -36,17 +49,6 @@ class _Common extends \Gt\Page\Logic {
 		}
 	}
 
-	public function toolMenu () {
-		$tools = new Tools();
-	
-		$options = $tools->list();
-		foreach ($options as $name => $url) {	
-			$t = $this->template->get('tool');
-			$t->setAttribute('href',$url);
-			$t->textContent = ucfirst($name);
-			$t->insertTemplate();
-		}
-	}
 
 	public function handleLogin() {
 
