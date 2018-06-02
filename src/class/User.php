@@ -58,6 +58,21 @@ class User extends Entity {
 		return password_hash($password, PASSWORD_BCRYPT);
 	}
 
+	public function setValue ($field, $value=false) {
+		if (is_array($field)) {
+			foreach ($field as $k => $v) {
+				if (strstr($k,'password')) {
+					$field[$k] = $this->password_hash($v);
+				}
+			}
+		}
+		else if (strstr($field, 'password')) {
+			$value = $this->password_hash($value);
+		
+		}
+		parent::setValue($field, $value);
+	}
+
 	public static function isAdmin () {
 		$user = new self($_SESSION['email']);
 		$level = $user->getValue('permission');
