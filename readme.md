@@ -19,3 +19,9 @@ Example being the readOnly flag. Setting this to 1 will prevent anything being c
 # Default User
 Email: admin@web-pi
 Password: password
+
+# Requirements
+- php 7.1 or greater
+- php-xml
+- php-mbstring
+- apache rewrite
