@@ -21,8 +21,8 @@ The file config.ini stores basic configuration, editing values in here will alte
 Example being the readOnly flag. Setting this to 1 will prevent anything being changed.
 
 # Default User
-Email: admin@web-pi
-Password: password
+- Email: admin@web-pi
+- Password: password
 
 # Requirements
 - php 7.1 or greater
