@@ -1,8 +1,9 @@
 <?php
+namespace App\Test;
+
 use PHPUnit\Framework\TestCase;
 
 class EntityTest extends TestCase {
-
     public function testICanCreateEntity() {
    
         $payload = [
