@@ -29,9 +29,9 @@ class Entity {
            	throw new Exception("Entity Already Exists");
         }        
         mkdir($this->currentDirectory, 0777, true);    
-	 (!file_exists($this->currentDirectory)) { 
+	if (!file_exists($this->currentDirectory)) { 
 		   throw new Exception("Unable to Create"); 
-} 
+	} 
 	    
         foreach ($payload as $field => $value) {
             $this->setValue($field,$value);

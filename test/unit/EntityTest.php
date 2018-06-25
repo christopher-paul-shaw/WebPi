@@ -1,6 +1,6 @@
 <?php
 namespace App\Test;
-
+use App\Entity;
 use PHPUnit\Framework\TestCase;
 
 class EntityTest extends TestCase {
@@ -32,7 +32,7 @@ class EntityTest extends TestCase {
         $e = new Entity($payload['id_entity']);
         $e->delete();
         
-        $e = new Entity($payload['id_entity']) 
+        $e = new Entity($payload['id_entity']); 
         $this->assertEquals(false, $e->getValue('test'));
       
     }   
