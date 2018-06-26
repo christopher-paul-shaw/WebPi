@@ -3,7 +3,7 @@
 		"phpgt/webengine": "^2.2"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "*"
+		"phpunit/phpunit": "^7"
 	},
 	"autoload": {
 		"psr-4": {
