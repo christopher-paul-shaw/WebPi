@@ -72,7 +72,7 @@ class Entity {
 		return $items;  
 	}
 
-	public function protectField($field) {
+	private function protectField($field) {
 		if (strstr($field,'./')) {
 			throw new Exception("Invalid Field");
 		}
@@ -91,13 +91,8 @@ class Entity {
 		return file_put_contents($path, $value);
 	}
 
-	public function blankValue ($field) {
-		$this->protectField($field);
-		$path = "{$this->currentDirectory}/{$field}.dat";
-		return file_put_contents($path, '');
-	}
-
-	public function removeDirectory($path) {
+	
+	private function removeDirectory($path) {
 		if ($this->readOnly) return; 
 		$files = glob($path . '/*');
 		foreach ($files as $file) {
@@ -106,7 +101,7 @@ class Entity {
 		rmdir($path);
 	}
 
-	public function tearDown() {
-		$this->removeDirectory(Path::get(Path::DATA)."/{$this->type}/");
-	}
+
+
+	
 }
