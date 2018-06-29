@@ -23,7 +23,7 @@ class EntityTest extends TestCase {
         $e = new Entity('exampleID');      
         $this->assertEquals($payload['test'], $e->getValue('test'));    
     }
-    
+
     public function testICanDeleteEntity() {
  
         $payload = [
@@ -41,6 +41,37 @@ class EntityTest extends TestCase {
         $this->assertEquals(false, $e->getValue('test'));
       
     }   
+
+    public function testICantUseUnsafeFields () {
+        $payload = [
+           '../id_entity' => 'testId1',
+           './test' => 'case'
+        ];
+              
+        $setup_entity = new Entity('exampleID');
+        $this->expectExceptionMessage('Invalid Field');
+        $setup_entity->create($payload);
+    }
+
+     public function testICanSearch () {
+        $payload = [
+           '../id_entity' => 'testId1',
+           './test' => 'case'
+        ];
+              
+        $e1 = new Entity('exampleID');
+        $e1->create(['test' => 1, 'foo' => 'bar']);
+        $e2 = new Entity('exampleID2');
+        $e2->create(['test' => 2, 'foo' => 'bar']);
+        $e3 = new Entity('exampleID3');
+        $e3->create(['test' => 3, 'foo' => 'bar']);
+ 
+        $search = new Entity();
+        $results = $search->search();
+
+        $this->assertTrue(count($results) > 0);
+
+    }
        
     public function testICantDuplicateEntity() {
     
