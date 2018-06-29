@@ -70,6 +70,28 @@ class EntityTest extends TestCase {
         $this->assertEquals($string, $e->getValue('test'));  
     }
 
+
+    public function testICanPayloadUpdateEntity() {    
+        $payload = [
+           'id_entity' => 'testId',
+           'test' => 'case'
+        ];
+         
+        $string = 'something';    
+        $e = new Entity('exampleID');
+        $e->create($payload);
+
+	$new_payload = [
+		'test' => $string,
+		'id_entity' => 'new'
+	];
+
+        $e->update($new_payload);      
+        $this->assertEquals($string, $e->getValue('test'));  
+    }
+
+
+
     public function removeDirectory($path) {
         $files = glob($path . '/*');
         foreach ($files as $file) {
