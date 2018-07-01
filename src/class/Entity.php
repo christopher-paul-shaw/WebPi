@@ -13,7 +13,7 @@ class Entity {
 	protected $privateFields = [];
 
 	public $readOnly = false;
-	public $ipLocked = false;
+	
 
 	public function __construct ($identifier=false) {
 		$this->identifier = strtolower($identifier);
