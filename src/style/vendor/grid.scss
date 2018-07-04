@@ -14,9 +14,7 @@ body {
   box-sizing: border-box;
 }
 
-div {
-  border: 1px solid red;
-}
+
 
 
 $breakPoints : (
@@ -39,6 +37,10 @@ $breakPoints : (
     .columns-#{$i} {
       grid-template-columns: #{$cols};
     }
+
+    .columns-#{$i} * {
+      padding: 8px;
+    }
   }
 }
 
@@ -58,4 +60,9 @@ nav {
 
 .u-text-center {
   text-align: center; 
+}
+
+
+.table {
+  border-top:  1px dotted #efefef;
 }
