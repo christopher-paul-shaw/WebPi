@@ -1,14 +1,24 @@
-
 body {
-  margin: 0px;
+  margin: 0;
+  padding: 0;
 }
-nav {
-  background: #efefef;
+
+.row {
+  width: 100%; 
+  margin: auto;
+  max-width: 900px;
+  display: grid;
 }
 
 * {
   box-sizing: border-box;
 }
+
+div {
+  border: 1px solid red;
+}
+
+
 $breakPoints : (
   'xxl': 18000px,
   'xl': 1400px,
@@ -17,51 +27,35 @@ $breakPoints : (
   'sm': 200px
 );
 
-.row {
-  max-width: 800px;
-  width: 100%;
-  text-align: center;
-  margin: auto;
-  &--full {
-   max-width: 100%;
-   width: 100%;
-  }
-}
-
 @mixin grid_columns($columns, $breakpoint) {
-  $split: 1000px;
-  $width: 100% / $columns;
-  $display: 'inline-block';
-  @if ($breakpoint < $split) {
-    $display: 'block';
-    .row {
-      width: 90%;
-    }
-  }
+  $split: 800;
+  $cols: '';
   @for $i from 1 through $columns {
-       $current_width: $i * $width - 1;
-       @if ($breakpoint < $split) {
-            $current_width: 100%;
-       }
-       .col-#{$i} { 
-          box-sizing: border-box;
-          text-align: left;
-          padding: 8px;
-    
-          vertical-align: middle;
-            display: #{$display};
-            width: $current_width;
-       }
+  
+   $cols: "#{$cols} 1fr";
+   @if ($breakpoint < $split) {
+     $cols: 'auto';
+    }
+    .columns-#{$i} {
+      grid-template-columns: #{$cols};
+    }
   }
 }
 
 @each $k , $v in $breakPoints {
   @media (max-width:#{$v}) {
     @include grid_columns(12,$v);  
-     
- }
- .u-#{$k}-hide { 
-    display: none;
- }
+  }
+}
   
+.icon-content {
+    grid-template-columns: 10% 90%;
+}
+
+nav {
+  background: #444;
+}
+
+.u-text-center {
+  text-align: center; 
 }
