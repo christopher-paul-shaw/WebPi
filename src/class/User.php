@@ -6,7 +6,7 @@ use DirectoryIterator;
 use Gt\Core\Config;
 
 
-class User extends Entity {
+class User extends DataStore {
 
 	public $type = 'user';
 	public $storage = '/data';
@@ -74,7 +74,9 @@ class User extends Entity {
 	}
 
 	public static function isAdmin () {
-		$user = new self($_SESSION['email']);
+		
+		$email = isset($_SESSION['email']) ? $_SESSION['email'] : false;
+		$user = new self($email);
 		$level = $user->getValue('permission');
 		return strtolower($level) == 'admin';
 	}

@@ -71,7 +71,7 @@ class RPI {
 		$stats['disk_usage'] = round (100 - (($diskfree / $disktotal) * 100)) .'%';
 	
 		if ($stats['os'] == "linux") {
-			$stats['uptime'] = floor(preg_replace ('/\.[0-9]+/', '', file_get_contents('/proc/uptime')) / 86400);
+			$stats['uptime'] = floor((int) preg_replace ('/\.[0-9]+/', '', file_get_contents('/proc/uptime')) / 86400);
 		}
 		file_put_contents($this->path.'stats.dat',json_encode($stats));
 		return $stats;

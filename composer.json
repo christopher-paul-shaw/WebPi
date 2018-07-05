@@ -1,6 +1,7 @@
 {
 	"require": {
-		"phpgt/webengine": "^2.2"
+		"phpgt/webengine": "^2.2",
+		"christopher-paul-shaw/datastore": "^1.0"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "^7"
