@@ -1,14 +1,14 @@
 <div class="container">
-	<div class="row">
-        <div class="col-3">
+	<div class="row columns-2">
+        	<div>
 			<h1>Users</h1>
 		</div>
-		<div class="col-9">
+		<div>
 		
 		</div>
  	</div>
 	<div class="row">
-		<div class="col-12 c-box b-green">
+		<div class="c-box b-green">
 			<label for="add-user-toggle" class="title">+Add User</label>
 			<input type="checkbox" class="show php-add-show" id="add-user-toggle" />
 			<span>
@@ -31,31 +31,27 @@
 
 
  	<div class="row">
-		<div class="col-12 c-box">
+		<div class="c-box">
 			<div class="title">User Accounts</div>
 			<div>
 				<div class="row columns-5">
-			        	<div class="col-3"><b>Email</b></div>
-			        	<div class="col-2"><b>Name</b></div>
-			        	<div class="col-2"><b>Password</b></div>
-			        	<div class="col-2"><b>Permission</b></div>
-			        	<div class="col-3"></div>
-			    	</form>
+			        	<div><b>Email</b></div>
+			        	<div><b>Name</b></div>
+			        	<div><b>Password</b></div>
+			        	<div><b>Permission</b></div>
+			        	<div></div>
 			 	</div>
 			</div>
-
 			<div data-template="user-row">
-				<div class="row columns-5">
-					
-						<input type="hidden" name="email" />
-						<input type="hidden" name="do" value="edit" />
-			        	<div class="col-3 php-email">Email</div>
-			        	<div class="col-2"><input type="text" name="name" autocomplete="off" /></div>
-			        	<div class="col-2"><input type="password" name="password" autocomplete="off" /></div>
-			        	<div class="col-2"><select name="permission"><option></option></select></div>
-			        	<div class="col-3"><button type="submit" name="edit">Edit</button> <button type="submit" name="delete" class="u-bg-red js-confirm">Delete</button></div>
+				<form class="row columns-5">
+					<input type="hidden" name="email" />
+					<input type="hidden" name="do" value="edit" />
+			        	<div class="php-email">Email</div>
+			        	<div><input type="text" name="name" autocomplete="off" /></div>
+			        	<div><input type="password" name="password" autocomplete="off" /></div>
+			        	<div><select name="permission"><option></option></select></div>
+			        	<div><button type="submit" name="edit">Edit</button> <button type="submit" name="delete" class="u-bg-red js-confirm">Delete</button></div>
 			    	</form>
-			 	</div>
 			</div>
 			
 		</div>
