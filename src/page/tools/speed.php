@@ -16,16 +16,10 @@ class Speed extends \Gt\Page\Logic {
 		$speedtest = new SpeedTest();
 
 		if ($this->date) {
-			$logs = $speedtest->analyseLog($this->date);
-
-			$t = $this->template->get('log-row');
-			$t->querySelector('.php-date')->textContent = "Date";
-			$t->querySelector('.php-time')->textContent = "Time";
-			$t->querySelector('.php-down')->textContent = "Down";
-			$t->querySelector('.php-up')->textContent = "Up";
-			$t->querySelector('.php-ping')->textContent = "Ping";
+			$logs = $speedtest->analyseLog($this->date);	
+			$t = $this->template->get('log-row-header');
 			$t->insertTemplate();
-			
+
 			foreach ($logs as $l) {
 				$t = $this->template->get('log-row');
 				$t->querySelector('.php-date')->html = $l[0];
@@ -39,7 +33,8 @@ class Speed extends \Gt\Page\Logic {
 		}
 
 		$files = $speedtest->listLogs();
-		
+		$t = $this->template->get('log-list-header');
+			$t->insertTemplate();
 		foreach ($files as $date => $name) {
 			$t = $this->template->get('log-list');
 			$t->querySelector('a')->textContent = $date;

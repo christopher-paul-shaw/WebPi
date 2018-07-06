@@ -1,31 +1,37 @@
-<div class="container">
-	<div class="row">
-        <div class="col-6">
+
+	<div class="row columns-2">
+        <div >
 			<h1>Speed Tests</h1>
 		</div>
-		<div class="col-6">
+		<div>
 
 		</div>
  	</div>
-	<div class="row">
-		<div class="col-12 c-box">
+	<div class="row columns-1">
+		<div class="c-box">
 			<div class="title">Speed Logs</div>
-			<div data-template="log-row">
-				<div class="row table-row">
-			        <div class="col-3 php-date">date</div>
-			        <div class="col-3 php-time">time</div>
-			        <div class="col-2 php-down"></div>
-			        <div class="col-2 php-up"></div>
-			        <div class="col-2 php-ping"></div>
-			 	</div>
+			<div class="row table-head columns-5" data-template="log-row-header">
+			        <div>Date</div>
+			        <div>Time</div>
+			        <div>Down</div>
+			        <div>Up</div>
+			        <div>Ping</div>	 
 			</div>
-			<div data-template="log-list">
-				<div class="row table-row">
-			        <div class="col-12">
-			        	<a href="/">LOG</a>
-			        </div>
-			 	</div>
+			<div data-template="log-row" class="row table-row columns-5">
+			        <div class="php-date">date</div>
+			        <div class="php-time">time</div>
+			        <div class="php-down"></div>
+			        <div class="php-up"></div>
+			        <div class="php-ping"></div>
+			</div>
+			<div class="table-head row columns-1" data-template="log-list-header">
+			        	<div><b>Logs</b></div>
+			 </div>
+			<div data-template="log-list" class="row table-row columns-1">
+			    <div>
+			      	<a href="/">LOG</a>
+			    </div>
+			 	
 			</div>
 		</div>
  	</div>
-</div>

@@ -1,13 +1,13 @@
-<div class="container">
+
 	<div class="row columns-2">
-        	<div>
+        <div>
 			<h1>Users</h1>
 		</div>
-		<div>
+	<div>
 		
 		</div>
  	</div>
-	<div class="row">
+	<div class="row columns-1">
 		<div class="c-box b-green">
 			<label for="add-user-toggle" class="title">+Add User</label>
 			<input type="checkbox" class="show php-add-show" id="add-user-toggle" />
@@ -28,22 +28,19 @@
 			</span>
 		</div>
  	</div>
-
-
- 	<div class="row">
+ 	<div class="row columns-1">
 		<div class="c-box">
 			<div class="title">User Accounts</div>
-			<div>
-				<div class="row columns-5">
+		
+				<div class="table-head row columns-5">
 			        	<div><b>Email</b></div>
 			        	<div><b>Name</b></div>
 			        	<div><b>Password</b></div>
 			        	<div><b>Permission</b></div>
 			        	<div></div>
 			 	</div>
-			</div>
-			<div data-template="user-row">
-				<form class="row columns-5">
+	
+				<form class="row columns-5 table-row" data-template="user-row">
 					<input type="hidden" name="email" />
 					<input type="hidden" name="do" value="edit" />
 			        	<div class="php-email">Email</div>
@@ -51,9 +48,6 @@
 			        	<div><input type="password" name="password" autocomplete="off" /></div>
 			        	<div><select name="permission"><option></option></select></div>
 			        	<div><button type="submit" name="edit">Edit</button> <button type="submit" name="delete" class="u-bg-red js-confirm">Delete</button></div>
-			    	</form>
-			</div>
-			
+			    </form>
 		</div>
  	</div>
-</div>

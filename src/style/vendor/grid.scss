@@ -10,12 +10,23 @@ body {
   display: grid;
 }
 
+.table-row {
+  border-top:  1px dotted #efefef;
+  padding: 0px !important;
+}
+
+.table-head {
+  padding:  0px;
+  background: #efefef;
+}
+
+.table-head * {
+  font-weight: bold;
+}
+
 * {
   box-sizing: border-box;
 }
-
-
-
 
 $breakPoints : (
   'xxl': 18000px,
@@ -63,6 +74,3 @@ nav {
 }
 
 
-.table {
-  border-top:  1px dotted #efefef;
-}
