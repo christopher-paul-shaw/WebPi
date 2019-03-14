@@ -23,16 +23,16 @@ class User extends DataStore {
 	
 
 	public function __construct ($identifier=false) {
-    	parent::__construct($identifier);
-    	$this->config = new Config();
-        $this->ipLocked = !empty($this->config['user']->ipLocked); 
-    	$this->multiLogin = !empty($this->config['user']->multiLogin); 
+    		parent::__construct($identifier);
+    		$this->config = new Config();
+        	$this->ipLocked = !empty($this->config['user']->ipLocked); 
+    		$this->multiLogin = !empty($this->config['user']->multiLogin); 
 	}
 
 	public function changePassword (
-	$current=false, 
-	$new=false, 
-	$confirm=false) {
+		$current=false, 
+		$new=false, 
+		$confirm=false) {
 
 		$realPassword = $this->getValue('password');
 		if (!$current) {
