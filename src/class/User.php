@@ -4,7 +4,7 @@ use Gt\Core\Path;
 use Exception;
 use DirectoryIterator;
 use Gt\Core\Config;
-
+use CPS\DataStore;
 
 class User extends DataStore {
 
