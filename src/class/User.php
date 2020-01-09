@@ -21,7 +21,6 @@ class User extends DataStore {
 		'password',    
 	];     
 	
-
 	public function __construct ($identifier=false) {
     		parent::__construct($identifier);
     		$this->config = new Config();
